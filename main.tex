@@ -1,23 +1,32 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,dvipdfmx]{report}
 \usepackage[hmargin=1.8cm,vmargin=1.4cm,includehead,includefoot]{geometry}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
 
+\newcommand{\article}[3]{
+    \fancyfoot[L]{#2}% Author name on the right footer
+    \phantomsection
+    \addcontentsline{toc}{section}{#1\\ #2}% 個々のタイトルなどは目次ではsection扱い
+    \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{#3}
+}
 
 \begin{document}
 
 \setcounter{page}{0}
 \thispagestyle{empty}
 
-\vspace*{2cm}
+\vspace*{1.5cm}
 
 \begin{center}
 \Huge{\sffamily Institute for Mathematical Informatics}\\
 \vspace{1.5cm}
 \Huge{\sffamily Annual Report}\\
 \vspace{0.5cm}
-\Huge{\sffamily 2024}
+\Huge{\sffamily 2024}\\
+\vspace{0.5cm}
+\Huge{\sffamily Vol. 1}\\
 
 \vfill
 \includegraphics[scale=0.75]{circle_logo.pdf}
@@ -32,32 +41,35 @@
 
 \newpage
 
+\tableofcontents
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[L]{\usefont{OT1}{phv}{m}{n}MGU-IMI Annual Report}
 \fancyhead[R]{\usefont{OT1}{phv}{m}{n}Vol.~1 (2024)}
 \fancyfoot{}
-\fancyfoot[L]{\TheAuthor}
-\fancyfoot[R]{\footnotesize \thepage}
+\fancyfoot[R]{\thepage}
 \renewcommand{\footrulewidth}{1pt}
 \renewcommand{\headrulewidth}{1pt}
 
 %
 % Hideki Yukawa's contribution
 %
-\fancyfoot[L]{Hideki Yuakwa}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}}]{contribution1.pdf}
+\article{On a Possible Interpretation of the Penetrating Component of the Cosmic Ray}{Hideki Yuakwa}{eng1/eng1.pdf}
 
 %
 % Paul Dirac's contribution
 %
-\fancyfoot[L]{Paul Dirac}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}}]{contribution2.pdf}
+\article{The Quantum Theory of the Electron}{Paul Dirac}{eng2/eng2.pdf}
 
 %
 % Japanese LaTeX
 %
-\fancyfoot[L]{GitHub Copilot}
-\includepdf[pages=-,pagecommand={\thispagestyle{fancy}}]{japanese.pdf}
- 
+\article{人工知能の発展に関する歴史}{GitHub Copilot}{jp/jp.pdf}
+
+%
+% Japanese Word
+%
+\article{人工知能の発展に関する歴史(Word)}{GitHub Copilot}{word/word.pdf}
+
 \end{document}
