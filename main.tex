@@ -4,13 +4,16 @@
 \usepackage{pdfpages}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage{tocloft}
+%\usepackage{titlesec}
 
 % 寄稿記事の挿入のためのマクロ
 % \article{タイトル}{著者}{ファイル名}
 \newcommand{\article}[3]{
     \fancyfoot[L]{#2} % Author name on the right footer
     \phantomsection % hyperrefのためのダミー
-    \addcontentsline{toc}{section}{#1\\ #2}% 個々のタイトルなどは目次ではsection扱い
+    \addcontentsline{toc}{section}{#1}% 個々のタイトルは目次ではsection扱い
+    \addcontentsline{toc}{subsection}{\it #2}% 個々の著者名は目次ではsubsection扱い
     \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{#3} % 原稿のPDFファイルを挿入
 }
 
@@ -34,7 +37,7 @@
 \Huge{\sffamily Vol. 1}\\
 
 \vfill
-\includegraphics[scale=0.75]{circle_logo.pdf}
+\includegraphics[scale=0.7]{circle_logo.pdf}
 \vfill
 
 \Huge{M}\Large{EIJI}
@@ -47,10 +50,40 @@
 \newpage
 
 %
+% Preface
+%
+\chapter*{Preface}
+
+The Institute for Mathematical Informatics was established at Meiji Gakuin University in 2024 to coincide with the opening of the Faculty of Mathematical Informatics.
+
+The purpose of the Institute for Mathematical Informatics is to conduct and promote academic research related to information and mathematical sciences, including surveys and research, collecting and organizing materials, presenting the results of surveys and research, and holding lectures and seminars.
+
+It is great pleasure for us to report hereby on the annual activities of the Institute for Mathematical Informatics and we hope that these research exchanges will lead to our further research activity.
+
+\vspace{2cm}
+
+\begin{flushright}
+Hiroshi Imai\\Professor and Director
+\end{flushright}
+
+\begin{flushright}
+Hiroaki Anada\\Professor and Chief
+\end{flushright}
+
+\newpage
+
+%
 % 目次
 %
+\addtocontents{toc}{\vspace*{5mm}}
+\addtocontents{toc}{\cftpagenumbersoff{subsec}} % no subsection page numbers
 \tableofcontents
 
+\newpage
+
+%
+% ヘッダー・フッターの設定
+%
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[L]{\usefont{OT1}{phv}{m}{n}MG-IMI Annual Report}
@@ -70,21 +103,33 @@
 %
 % Hideki Yukawa's contribution
 %
-\article{On a Possible Interpretation of the Penetrating Component of the Cosmic Ray}{Hideki Yuakwa}{eng1/eng1.pdf}
+\article
+{On a Possible Interpretation of the Penetrating Component of the Cosmic Ray}
+{Hideki Yuakwa}
+{eng1/eng1.pdf}
 
 %
 % Paul Dirac's contribution
 %
-\article{The Quantum Theory of the Electron}{Paul Dirac}{eng2/eng2.pdf}
+\article
+{The Quantum Theory of the Electron}
+{Paul Dirac}
+{eng2/eng2.pdf}
 
 %
 % Japanese LaTeX
 %
-\article{人工知能の発展に関する歴史}{GitHub Copilot}{jp/jp.pdf}
+\article
+{人工知能の発展に関する歴史}
+{GitHub Copilot}
+{jp/jp.pdf}
 
 %
 % Japanese Word
 %
-\article{人工知能の発展に関する歴史(Word)}{GitHub Copilot}{word/word.pdf}
+\article
+{人工知能の発展に関する歴史(Word)}
+{GitHub Copilot}
+{word/word.pdf}
 
 \end{document}
