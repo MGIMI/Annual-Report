@@ -5,15 +5,20 @@
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 
+% 寄稿記事の挿入のためのマクロ
+% \article{タイトル}{著者}{ファイル名}
 \newcommand{\article}[3]{
-    \fancyfoot[L]{#2}% Author name on the right footer
-    \phantomsection
+    \fancyfoot[L]{#2} % Author name on the right footer
+    \phantomsection % hyperrefのためのダミー
     \addcontentsline{toc}{section}{#1\\ #2}% 個々のタイトルなどは目次ではsection扱い
-    \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{#3}
+    \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{#3} % 原稿のPDFファイルを挿入
 }
 
 \begin{document}
 
+%
+% 表紙
+%
 \setcounter{page}{0}
 \thispagestyle{empty}
 
@@ -41,6 +46,9 @@
 
 \newpage
 
+%
+% 目次
+%
 \tableofcontents
 
 \pagestyle{fancy}
@@ -51,6 +59,13 @@
 \fancyfoot[R]{\thepage}
 \renewcommand{\footrulewidth}{1pt}
 \renewcommand{\headrulewidth}{1pt}
+
+%
+% 以下、各記事の挿入(基本的には\articleマクロを使う)
+% 各記事のファイル名は、このファイル(main.tex)からの相対パスで指定する
+% 例: \article{タイトル}{著者}{eng1/eng1.pdf}
+% 原則、筆頭著者名のアルファベット順に並べる
+%
 
 %
 % Hideki Yukawa's contribution
