@@ -1,4 +1,4 @@
-# LaTeX Templates for MGU-IMI Annual Report
+# LaTeX Templates for MG-IMI Annual Report
 
 ## このテンプレートの目的
 
